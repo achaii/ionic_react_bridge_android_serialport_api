@@ -1,5 +1,5 @@
-import './ExploreContainer.css';
 
+import './ExploreContainer.css';
 interface ContainerProps { }
 
 const ExploreContainer: React.FC<ContainerProps> = () => {
