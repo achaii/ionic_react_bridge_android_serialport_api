@@ -137,19 +137,19 @@ public class SerialPortBridgePlugin extends Plugin {
                         Log.e("RFID", "in byte: " + tempBuf);
                         String temStr = new String(tempBuf);
                         Log.e("RFID", "in string: " + temStr);
-                        //temInt = Integer.parseInt(temStr, 16);
-                        //soundPool.play(soundId, 1, 1, 0, 0, 1);
+                        temInt = Integer.parseInt(temStr, 16);
+                        soundPool.play(soundId, 1, 1, 0, 0, 1);
                     } else {
                         temInt = 0;
                     }
 
-                    //JSObject response = new JSObject();
+                    JSObject response = new JSObject();
 
-                    //String result = String.valueOf(temInt);
+                    String result = String.valueOf(temInt);
 
-                    //response.put("result", result);
+                    response.put("result", result);
 
-                    //call.resolve(response);
+                    call.resolve(response);
                 }
             });
 
