@@ -147,7 +147,7 @@ public class SerialPortBridgePlugin extends Plugin {
 
                     String result = String.valueOf(temInt);
 
-                    response.put("result", result);
+                    response.put("result", result);as
 
                     call.resolve(response);
                 }
