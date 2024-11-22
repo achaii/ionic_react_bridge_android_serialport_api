@@ -38,14 +38,14 @@ const Home: React.FC = () => {
   const devicesOnPort = async () => {
     try{
       const serial = await SerialPortBridge.openSerialPort({
-        device : '/dev/ttyS3', 
+        port : '/dev/ttyS3', 
         baudrate: '9600'
       });
 
-      if(serial.serial_port.length > 0){
-        setDevicesOn(serial.serial_port);
+      if(serial.message.length > 0){
+        setDevicesOn(serial.message);
       }else{
-        setDevicesOn(serial.serial_port);
+        setDevicesOn(serial.message);
       }
     }catch{
       console.log("error: device not open");
@@ -56,10 +56,10 @@ const Home: React.FC = () => {
     try{
       const serial = await SerialPortBridge.closeSerialPort();
 
-      if(serial.serial_port.length > 0){
-        setDevicesOn(serial.serial_port);
+      if(serial.message.length > 0){
+        setDevicesOn(serial.message);
       }else{
-        setDevicesOn(serial.serial_port);
+        setDevicesOn(serial.message);
       }
     }catch{
       console.log("error: serial port close");

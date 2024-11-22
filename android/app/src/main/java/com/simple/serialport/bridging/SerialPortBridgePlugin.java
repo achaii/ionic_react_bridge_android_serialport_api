@@ -68,10 +68,10 @@ public class SerialPortBridgePlugin extends Plugin {
             // Enable GPIO power.
             PowerGPIO.power("1");
 
-            String path = call.getString("device");
+            String port = call.getString("port");
             String baudRate = call.getString("baudrate");
 
-            device = new SerialPortConfiguration(path, Integer.parseInt(baudRate, 16));
+            device = new SerialPortConfiguration(port, Integer.parseInt(baudRate, 16));
             openDevice = device.openDevice();
 
             // Load a sound effect for feedback.
@@ -80,14 +80,14 @@ public class SerialPortBridgePlugin extends Plugin {
 
             JSObject response = new JSObject();
 
-            response.put("serial_port", "open");
+            response.put("message", "open");
 
             call.resolve(response);
         } catch (Exception e) {
             Log.e("ERR", String.valueOf(e));
             JSObject response = new JSObject();
 
-            response.put("serial_port", "close");
+            response.put("message", "close");
 
             call.resolve(response);
         }
@@ -108,13 +108,13 @@ public class SerialPortBridgePlugin extends Plugin {
 
             JSObject response = new JSObject();
 
-            response.put("serial_port", "close");
+            response.put("message", "close");
 
             call.resolve(response);
         } catch (Exception e) {
             JSObject response = new JSObject();
 
-            response.put("serial_port", "error");
+            response.put("message", "error");
 
             call.resolve(response);
         }
@@ -134,9 +134,9 @@ public class SerialPortBridgePlugin extends Plugin {
                     if (size > 0) {
                         byte[] tempBuf = new byte[size - 2];
                         System.arraycopy(buffer, 2, tempBuf, 0, size - 2);
-                        Log.e("RFID", "in byte: " + tempBuf);
+                        Log.e("RFID", "buffer in byte: " + tempBuf);
                         String temStr = new String(tempBuf);
-                        Log.e("RFID", "in string: " + temStr);
+                        Log.e("RFID", "buffer in string: " + temStr);
                         temInt = Integer.parseInt(temStr, 16);
                         soundPool.play(soundId, 1, 1, 0, 0, 1);
                     } else {
@@ -147,7 +147,7 @@ public class SerialPortBridgePlugin extends Plugin {
 
                     String result = String.valueOf(temInt);
 
-                    response.put("result", result);as
+                    response.put("result", result);
 
                     call.resolve(response);
                 }

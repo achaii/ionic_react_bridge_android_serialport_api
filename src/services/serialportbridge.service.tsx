@@ -2,8 +2,8 @@ import { registerPlugin } from "@capacitor/core";
 
 interface SerialPortBridgePlugin {
     getDevices(): Promise<{ devices: string }>;
-    openSerialPort(options: {device: string, baudrate: string}): Promise<{ serial_port: string }>;
-    closeSerialPort(): Promise<{ serial_port: string }>;
+    openSerialPort(options: {port: string, baudrate: string}): Promise<{ message: string }>;
+    closeSerialPort(): Promise<{ message: string }>;
     getScanResult(): Promise<{ result: string }>;
 }
 
